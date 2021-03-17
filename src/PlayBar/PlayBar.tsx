@@ -3,6 +3,7 @@ import React from "react";
 import { ReactComponent as PlayIcon } from "./icons/Play.svg";
 import { ReactComponent as PrevIcon } from "./icons/Prev.svg";
 import { ReactComponent as NextIcon } from "./icons/Next.svg";
+import { ReactComponent as LoopIcon } from "./icons/Loop.svg";
 import Input from "./Input";
 import { Actions, PlayerContext } from "./Store";
 
@@ -50,6 +51,7 @@ const PlayBar = ({ playlist }: { playlist: Array<Object> }) => {
             }
           />
           <NextIcon />
+          <LoopIcon className="stroke" />
         </div>
         <div className="seekbar__wrapper">
           <span>{currentTime}</span>

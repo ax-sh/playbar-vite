@@ -25,12 +25,19 @@
       justify-content: space-around;
       width: 30%;
       margin: 0 auto;
+      .stroke {
+        fill: none;
+        &:hover path {
+          stroke: #1db954;
+          fill: none;
+        }
+      }
       svg {
         fill: #fff;
         width: 34px;
         height: 34px;
         stroke-width: 0;
-        &:hover {
+        &:hover path {
           fill: #1db954;
           cursor: pointer;
         }
