@@ -3,25 +3,30 @@ import React, { createContext, useReducer } from "react";
 export enum Actions {
   SET_PLAYLIST,
   SET_SRC,
+  SET_PLAYING,
 }
 
 const Reducer = (state, action) => {
   switch (action.type) {
     case Actions.SET_PLAYLIST:
-      console.log(
-        "🚀 ~ file: Store.tsx ~ line 16 ~ Reducer ~ action.payload?.[0]",
-        action.payload
-      );
+      const src = action.payload?.[0]?.src;
+
       return {
         ...state,
         playlist: action.payload,
-        // src: action.payload?.[0].src,
+        src,
       };
     case Actions.SET_SRC:
       return {
         ...state,
         src: action.payload,
       };
+    case Actions.SET_PLAYING:
+      return {
+        ...state,
+        playing: action.payload,
+      };
+
     default:
       return state;
   }

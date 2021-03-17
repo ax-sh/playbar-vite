@@ -41,7 +41,11 @@ const PlayBar = ({ playlist }: { playlist: Array<Object> }) => {
       <div className="controller__container">
         <div className="controller__buttons">
           <PrevIcon />
-          <PlayIcon />
+          <PlayIcon
+            onClick={() =>
+              dispatch({ type: Actions.SET_PLAYING, payload: !state.playing })
+            }
+          />
           <NextIcon />
         </div>
         <div className="seekbar__wrapper">

@@ -34,6 +34,10 @@ function App() {
   React.useEffect(() => {
     audioRef.current.src = state.src;
   }, [audioRef.current, state.src]);
+  React.useEffect(() => {
+    state.playing ? audioRef.current.play() : audioRef.current.pause();
+  }, [audioRef.current, state.playing]);
+
   return (
     <div className="App">
       <Div>
