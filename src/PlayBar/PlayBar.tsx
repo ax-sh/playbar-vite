@@ -4,6 +4,7 @@ import { ReactComponent as PlayIcon } from "./icons/Play.svg";
 import { ReactComponent as PrevIcon } from "./icons/Prev.svg";
 import { ReactComponent as NextIcon } from "./icons/Next.svg";
 import { ReactComponent as LoopIcon } from "./icons/Loop.svg";
+import { ReactComponent as SpeakerIcon } from "./icons/Speaker.svg";
 import Input from "./Input";
 import { Actions, PlayerContext } from "./Store";
 
@@ -25,8 +26,8 @@ const PlayBar = ({ playlist }: { playlist: Array<Object> }) => {
     setCurrentTime(progress);
     console.log("Yo", progress, value);
   };
-  const onVolumeSeek = (v) => {
-    dispatch({ type: Actions.SET_VOLUME, payload: v / 100 });
+  const onVolumeSeek = (value) => {
+    dispatch({ type: Actions.SET_VOLUME, payload: value });
   };
   React.useEffect(() => {
     dispatch({ type: Actions.SET_PLAYLIST, payload: playlist });
@@ -70,8 +71,8 @@ const PlayBar = ({ playlist }: { playlist: Array<Object> }) => {
         </div>
       </div>
       <div className="volume__container">
-        <LoopIcon
-          // className={`stroke ${state.loop ? "active" : " "}`}
+        <SpeakerIcon
+          className={`stroke ${state.mute ? "active" : " "}`}
           onClick={() =>
             dispatch({
               type: Actions.TOGGLE_MUTE,

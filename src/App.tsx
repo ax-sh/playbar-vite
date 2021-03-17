@@ -42,7 +42,9 @@ function App() {
   }, [audioRef.current, state.loop]);
   React.useEffect(() => {
     audioRef.current.muted = state.mute;
-    audioRef.current.volume = state.volume;
+    if (state.volume === undefined) return;
+
+    audioRef.current.volume = state.volume / 100;
   }, [audioRef.current, state.mute, state.volume]);
   // NOTE TEMP ONLY FOR DEBUG FOR NOW, state dependent
   React.useEffect(() => {
