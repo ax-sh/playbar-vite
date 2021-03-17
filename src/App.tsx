@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import "./App.css";
 
 import styled from "styled-components";
@@ -184,8 +184,27 @@ const Input = ({ onSeek, max = 100, ...props }) => {
   );
 };
 
-function App() {
+let TRACKS = [
+  "https://raw.githubusercontent.com/himalayasingh/music-player-1/master/music/2.mp3",
+  "https://raw.githubusercontent.com/himalayasingh/music-player-1/master/music/1.mp3",
+  "https://raw.githubusercontent.com/himalayasingh/music-player-1/master/music/3.mp3",
+  "https://raw.githubusercontent.com/himalayasingh/music-player-1/master/music/4.mp3",
+  "https://raw.githubusercontent.com/himalayasingh/music-player-1/master/music/5.mp3",
+];
+TRACKS = TRACKS.map((i) => {
+  return {
+    author: "Yo Ma",
+    title: Math.random() + " TITLE",
+    src: i,
+    time: 0,
+    duration: 0,
+  };
+});
+
+const PlayBar = (playlist: Array<Object>) => {
+  console.log("🚀 ~ file: App.tsx ~ line 205 ~ PlayBar ~ playlist", playlist);
   const title = "title";
+  const author = "author";
   const [duration] = useState(null);
   const [currentTime, setCurrentTime] = useState("0:00");
   const onSeek = (value: Number) => {
@@ -194,26 +213,33 @@ function App() {
     console.log("Yo", progress, value);
   };
   return (
+    <div className="play__bar">
+      <div className="info">
+        <h3>{title}</h3>
+        <h6>{author}</h6>
+      </div>
+      <div className="controller__container">
+        <div className="controller__buttons">
+          <PrevIcon />
+          <PlayIcon />
+          <NextIcon />
+        </div>
+        <div className="seekbar__wrapper">
+          <span>{currentTime}</span>
+          <Input className="seekbar" max="8" onSeek={onSeek} />
+          <span>{currentTime}</span>
+        </div>
+      </div>
+    </div>
+  );
+};
+function App() {
+  const audioRef = useRef<HTMLAudioElement>(null);
+  return (
     <div className="App">
       <Div>
-        <div className="play__bar">
-          <div className="info">
-            <h3>{title}</h3>
-            <h6>{title}</h6>
-          </div>
-          <div className="controller__container">
-            <div className="controller__buttons">
-              <PrevIcon />
-              <PlayIcon />
-              <NextIcon />
-            </div>
-            <div className="seekbar__wrapper">
-              <span>{currentTime}</span>
-              <Input className="seekbar" max="8" onSeek={onSeek} />
-              <span>{currentTime}</span>
-            </div>
-          </div>
-        </div>
+        <PlayBar playlist={TRACKS} />
+        <audio ref={audioRef} src={TRACKS[0].src} controls />
       </Div>
     </div>
   );
