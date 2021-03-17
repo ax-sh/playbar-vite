@@ -32,6 +32,10 @@ function App() {
   const [state, dispatch] = React.useContext(PlayerContext);
   const audioRef = useRef<HTMLAudioElement>(null);
   React.useEffect(() => {
+    if (Number.isNaN(state.currentTime)) return;
+    audioRef.current.currentTime = state.currentTime;
+  }, [audioRef.current, state.currentTime]);
+  React.useEffect(() => {
     audioRef.current.src = state.src;
   }, [audioRef.current, state.src]);
   React.useEffect(() => {

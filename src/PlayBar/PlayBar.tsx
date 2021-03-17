@@ -23,9 +23,9 @@ const PlayBar = ({ playlist }: { playlist: Array<Object> }) => {
   const [currentTime, setCurrentTime] = React.useState("0:00");
   const [duration, setDuration] = React.useState("0:00");
   const onSeek = (value: Number) => {
-    const progress = calculateTime(value);
-    setCurrentTime(progress);
-    console.log("Yo", progress, value);
+    // const progress = calculateTime(value);
+    dispatch({ type: Actions.SET_CURRENT_TIME, payload: value });
+    // console.log("Yo", progress, value);
   };
   const onVolumeSeek = (value) => {
     dispatch({ type: Actions.SET_VOLUME, payload: value });
