@@ -68,10 +68,10 @@ const PlayBar = ({ playlist }: { playlist: Array<Object> }) => {
       </div>
       <div className="volume__container">
         <Input
-          rotate="90deg"
+          rotate="270deg"
           style={{ width: "50px" }}
           className="volume"
-          max="8"
+          max="100"
           onSeek={onSeek}
         />
       </div>
