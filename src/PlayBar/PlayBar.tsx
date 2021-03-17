@@ -1,5 +1,8 @@
 import "./PlayBar.scss";
 import React from "react";
+import { ReactComponent as PlayIcon } from "./icons/Play.svg";
+import { ReactComponent as PrevIcon } from "./icons/Prev.svg";
+import { ReactComponent as NextIcon } from "./icons/Next.svg";
 
 const PlayBar = (playlist: Array<Object>) => {
   console.log("🚀 ~ file: PlayBar.tsx ~ line 5 ~ PlayBar ~ playlist", playlist);
@@ -14,9 +17,9 @@ const PlayBar = (playlist: Array<Object>) => {
       </div>
       <div className="controller__container">
         <div className="controller__buttons">
-          {/* <PrevIcon /> */}
-          {/* <PlayIcon /> */}
-          {/* <NextIcon /> */}
+          <PrevIcon />
+          <PlayIcon />
+          <NextIcon />
         </div>
         <div className="seekbar__wrapper">
           <span>{currentTime}</span>
