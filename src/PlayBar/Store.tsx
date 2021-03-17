@@ -3,7 +3,7 @@ import React, { createContext, useReducer } from "react";
 export enum Actions {
   SET_PLAYLIST,
   SET_SRC,
-  SET_PLAYING,
+  TOGGLE_PLAYING,
 }
 
 const Reducer = (state, action) => {
@@ -21,10 +21,10 @@ const Reducer = (state, action) => {
         ...state,
         src: action.payload,
       };
-    case Actions.SET_PLAYING:
+    case Actions.TOGGLE_PLAYING:
       return {
         ...state,
-        playing: action.payload,
+        playing: !state.playing,
       };
 
     default:

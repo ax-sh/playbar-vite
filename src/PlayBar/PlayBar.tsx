@@ -43,7 +43,9 @@ const PlayBar = ({ playlist }: { playlist: Array<Object> }) => {
           <PrevIcon />
           <PlayIcon
             onClick={() =>
-              dispatch({ type: Actions.SET_PLAYING, payload: !state.playing })
+              dispatch({
+                type: Actions.TOGGLE_PLAYING,
+              })
             }
           />
           <NextIcon />
