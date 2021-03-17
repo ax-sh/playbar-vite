@@ -9,6 +9,7 @@ const InputStyle = styled.input`
     #fff 50%,
     #fff 100%
   );
+  transform: rotate(${({ rotate }) => rotate});
   /* border: solid 1px #82cfd0; */
   /* height: 7px; */
   /* width: 356px; */

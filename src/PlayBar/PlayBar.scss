@@ -16,6 +16,12 @@
       font-size: 1rem;
     }
   }
+
+  & .volume__container {
+    display: flex;
+    justify-items: center;
+    align-items: center;
+  }
   & .controller__container {
     /* background: red; */
     flex: 10;
