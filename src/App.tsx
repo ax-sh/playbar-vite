@@ -2,6 +2,7 @@ import React, { useState, useRef } from "react";
 import "./App.scss";
 import PlayBar from "./PlayBar/PlayBar";
 import styled from "styled-components";
+import { PlayerContext } from "./PlayBar/Store";
 
 let TRACKS = [
   "https://raw.githubusercontent.com/himalayasingh/music-player-1/master/music/2.mp3",
@@ -28,11 +29,15 @@ const Div = styled.div`
   justify-content: flex-end;
 `;
 function App() {
+  const [state, dispatch] = React.useContext(PlayerContext);
   const audioRef = useRef<HTMLAudioElement>(null);
+  React.useEffect(() => {
+    audioRef.current.src = state.src;
+  }, [audioRef.current, state.src]);
   return (
     <div className="App">
       <Div>
-        <PlayBar playlist={TRACKS} /> />
+        <PlayBar playlist={TRACKS} />
         <audio ref={audioRef} controls />
       </Div>
     </div>

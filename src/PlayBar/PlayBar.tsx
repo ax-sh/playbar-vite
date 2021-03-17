@@ -4,6 +4,7 @@ import { ReactComponent as PlayIcon } from "./icons/Play.svg";
 import { ReactComponent as PrevIcon } from "./icons/Prev.svg";
 import { ReactComponent as NextIcon } from "./icons/Next.svg";
 import Input from "./Input";
+import { Actions, PlayerContext } from "./Store";
 
 const calculateTime = (secs) => {
   const minutes = Math.floor(secs / 60);
@@ -12,9 +13,10 @@ const calculateTime = (secs) => {
   return `${minutes}:${returnedSeconds}`;
 };
 
-const PlayBar = (playlist: Array<Object>) => {
-  console.log("🚀 ~ file: PlayBar.tsx ~ line 5 ~ PlayBar ~ playlist", playlist);
-  const title = "title";
+const PlayBar = ({ playlist }: { playlist: Array<Object> }) => {
+  // console.log("🚀 ~ file: PlayBar.tsx ~ line 5 ~ PlayBar ~ playlist", playlist);
+  const [state, dispatch] = React.useContext(PlayerContext);
+  const [title, setTitle] = React.useState("0:00");
   const author = "author";
   const [currentTime, setCurrentTime] = React.useState("0:00");
   const onSeek = (value: Number) => {
@@ -22,6 +24,14 @@ const PlayBar = (playlist: Array<Object>) => {
     setCurrentTime(progress);
     console.log("Yo", progress, value);
   };
+  React.useEffect(() => {
+    dispatch({ type: Actions.SET_PLAYLIST, payload: playlist });
+  }, []);
+  React.useEffect(() => {
+    setTitle(state.src);
+    console.log(state.src);
+  }, [state.src]);
+
   return (
     <div className="play__bar">
       <div className="info">
