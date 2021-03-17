@@ -67,6 +67,14 @@ const PlayBar = ({ playlist }: { playlist: Array<Object> }) => {
         </div>
       </div>
       <div className="volume__container">
+        <LoopIcon
+          // className={`stroke ${state.loop ? "active" : " "}`}
+          onClick={() =>
+            dispatch({
+              type: Actions.TOGGLE_MUTE,
+            })
+          }
+        />
         <Input
           rotate="270deg"
           style={{ width: "50px" }}

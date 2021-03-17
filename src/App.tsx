@@ -40,6 +40,9 @@ function App() {
   React.useEffect(() => {
     audioRef.current.loop = state.loop;
   }, [audioRef.current, state.loop]);
+  React.useEffect(() => {
+    audioRef.current.muted = state.mute;
+  }, [audioRef.current, state.mute]);
   // NOTE TEMP ONLY FOR DEBUG FOR NOW, state dependent
   React.useEffect(() => {
     console.log("STATE", state);

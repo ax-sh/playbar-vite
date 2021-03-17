@@ -12,6 +12,7 @@ const initialState = {
   playing: false,
   src: "",
   loop: false,
+  mute: false,
 };
 
 const Reducer = (state, action) => {
@@ -38,6 +39,11 @@ const Reducer = (state, action) => {
       return {
         ...state,
         loop: !state.loop,
+      };
+    case Actions.TOGGLE_MUTE:
+      return {
+        ...state,
+        mute: !state.mute,
       };
 
     default:
