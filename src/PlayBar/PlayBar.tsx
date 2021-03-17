@@ -34,9 +34,11 @@ const PlayBar = ({ playlist }: { playlist: Array<Object> }) => {
     dispatch({ type: Actions.SET_PLAYLIST, payload: playlist });
   }, [dispatch]);
   React.useEffect(() => {
-    const time = calculateTime(state.duration);
-    setDuration(time);
-  }, [state.duration]);
+    const durationInMinute = calculateTime(state.duration);
+    const currentTimeInMinutes = calculateTime(state.currentTime);
+    setDuration(durationInMinute);
+    setCurrentTime(currentTimeInMinutes);
+  }, [state.currentTime, state.duration]);
   React.useEffect(() => {
     setTitle(state.src);
     console.log(state.src);
