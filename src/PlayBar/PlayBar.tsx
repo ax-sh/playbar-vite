@@ -31,7 +31,7 @@ const PlayBar = ({ playlist }: { playlist: Array<Object> }) => {
   };
   React.useEffect(() => {
     dispatch({ type: Actions.SET_PLAYLIST, payload: playlist });
-  }, []);
+  }, [dispatch]);
   React.useEffect(() => {
     setTitle(state.src);
     console.log(state.src);
