@@ -30,21 +30,30 @@ const InputStyle = styled.input`
 `;
 
 const Input = ({ onSeek, max = 100, ...props }) => {
+  const ref = React.useRef();
   const onInput = function ({ target }: { target }) {
     let value = ((target.value - target.min) / (target.max - target.min)) * 100;
     const color = "var(--color)";
     target.style.background = `linear-gradient(to right, ${color} 0%, ${color}  ${value}%, #fff  ${value}%, white 100%)`;
     onSeek(value);
   };
+
+  React.useEffect(() => {
+    const target = ref.current;
+    let value = ((target.value - target.min) / (target.max - target.min)) * 100;
+    const color = "var(--color)";
+    target.style.background = `linear-gradient(to right, ${color} 0%, ${color}  ${value}%, #fff  ${value}%, white 100%)`;
+  }, [ref.current, props.value]);
   return (
     <InputStyle
+      ref={ref}
       min="0"
       max={max}
       step="0.01"
       {...props}
       type="range"
       onInput={onInput}
-      // onChange={onInput}
+      onChange={onInput}
     />
   );
 };
