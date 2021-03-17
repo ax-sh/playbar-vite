@@ -27,6 +27,9 @@
       margin: 0 auto;
       .stroke {
         fill: none;
+        &.active path {
+          stroke: #1db954;
+        }
         &:hover path {
           stroke: #1db954;
           fill: none;

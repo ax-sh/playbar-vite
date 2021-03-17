@@ -52,8 +52,7 @@ const PlayBar = ({ playlist }: { playlist: Array<Object> }) => {
           />
           <NextIcon />
           <LoopIcon
-            style={!state.loop ? { backgroundColor: "green" } : {}}
-            className="stroke"
+            className={`stroke ${state.loop ? "active" : " "}`}
             onClick={() =>
               dispatch({
                 type: Actions.TOGGLE_LOOP,
