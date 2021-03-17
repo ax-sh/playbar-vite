@@ -49,10 +49,15 @@ const Div = styled.div`
           }
         }
       }
-      .seekbar {
+      .seekbar__wrapper {
         display: flex;
+        justify-items: center;
+        align-items: center;
         & > * {
           flex: 1;
+        }
+        .seekbar {
+          flex: 10;
         }
       }
     }
@@ -153,27 +158,41 @@ const InputStyle = styled.input`
   }
 `;
 
-const Input = ({ ...props }) => {
+const calculateTime = (secs) => {
+  const minutes = Math.floor(secs / 60);
+  const seconds = Math.floor(secs % 60);
+  const returnedSeconds = seconds < 10 ? `0${seconds}` : `${seconds}`;
+  return `${minutes}:${returnedSeconds}`;
+};
+const Input = ({ onSeek, max = 100, ...props }) => {
   const onInput = function ({ target }) {
     let value = ((target.value - target.min) / (target.max - target.min)) * 100;
-    console.log(value);
     const color = "var(--color)";
     target.style.background = `linear-gradient(to right, ${color} 0%, ${color}  ${value}%, #fff  ${value}%, white 100%)`;
+    onSeek(value);
   };
   return (
     <InputStyle
       min="0"
-      max="100"
+      max={max}
       step="0.01"
       {...props}
       type="range"
       onInput={onInput}
+      onChange={onInput}
     />
   );
 };
 
 function App() {
   const title = "title";
+  const [duration] = useState(null);
+  const [currentTime, setCurrentTime] = useState("0:00");
+  const onSeek = (value: Number) => {
+    const progress = calculateTime(value);
+    setCurrentTime(progress);
+    console.log("Yo", progress, value);
+  };
   return (
     <div className="App">
       <Div>
@@ -188,8 +207,10 @@ function App() {
               <PlayIcon />
               <NextIcon />
             </div>
-            <div className="seekbar">
-              <Input />
+            <div className="seekbar__wrapper">
+              <span>{currentTime}</span>
+              <Input className="seekbar" max="8" onSeek={onSeek} />
+              <span>{currentTime}</span>
             </div>
           </div>
         </div>
