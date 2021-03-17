@@ -37,6 +37,13 @@ function App() {
   React.useEffect(() => {
     state.playing ? audioRef.current.play() : audioRef.current.pause();
   }, [audioRef.current, state.playing]);
+  React.useEffect(() => {
+    audioRef.current.loop = state.loop;
+  }, [audioRef.current, state.loop]);
+  // NOTE TEMP ONLY FOR DEBUG FOR NOW, state dependent
+  React.useEffect(() => {
+    console.log("STATE", state);
+  }, [state]);
 
   return (
     <div className="App">

@@ -4,7 +4,15 @@ export enum Actions {
   SET_PLAYLIST,
   SET_SRC,
   TOGGLE_PLAYING,
+  TOGGLE_LOOP,
 }
+
+const initialState = {
+  playlist: [],
+  playing: false,
+  src: "",
+  loop: false,
+};
 
 const Reducer = (state, action) => {
   switch (action.type) {
@@ -26,16 +34,15 @@ const Reducer = (state, action) => {
         ...state,
         playing: !state.playing,
       };
+    case Actions.TOGGLE_LOOP:
+      return {
+        ...state,
+        loop: !state.loop,
+      };
 
     default:
       return state;
   }
-};
-
-const initialState = {
-  playlist: [],
-  playing: false,
-  src: "",
 };
 
 const Store = ({ children }) => {

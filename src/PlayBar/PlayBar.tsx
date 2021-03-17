@@ -51,7 +51,15 @@ const PlayBar = ({ playlist }: { playlist: Array<Object> }) => {
             }
           />
           <NextIcon />
-          <LoopIcon className="stroke" />
+          <LoopIcon
+            style={!state.loop ? { backgroundColor: "green" } : {}}
+            className="stroke"
+            onClick={() =>
+              dispatch({
+                type: Actions.TOGGLE_LOOP,
+              })
+            }
+          />
         </div>
         <div className="seekbar__wrapper">
           <span>{currentTime}</span>
