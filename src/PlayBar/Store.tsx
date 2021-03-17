@@ -3,8 +3,10 @@ import React, { createContext, useReducer } from "react";
 export enum Actions {
   SET_PLAYLIST,
   SET_SRC,
+  SET_VOLUME,
   TOGGLE_PLAYING,
   TOGGLE_LOOP,
+  TOGGLE_MUTE,
 }
 
 const initialState = {
@@ -44,6 +46,11 @@ const Reducer = (state, action) => {
       return {
         ...state,
         mute: !state.mute,
+      };
+    case Actions.SET_VOLUME:
+      return {
+        ...state,
+        volume: action.payload,
       };
 
     default:

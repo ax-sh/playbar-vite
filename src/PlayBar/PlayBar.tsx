@@ -25,6 +25,9 @@ const PlayBar = ({ playlist }: { playlist: Array<Object> }) => {
     setCurrentTime(progress);
     console.log("Yo", progress, value);
   };
+  const onVolumeSeek = (v) => {
+    dispatch({ type: Actions.SET_VOLUME, payload: v / 100 });
+  };
   React.useEffect(() => {
     dispatch({ type: Actions.SET_PLAYLIST, payload: playlist });
   }, []);
@@ -80,7 +83,7 @@ const PlayBar = ({ playlist }: { playlist: Array<Object> }) => {
           style={{ width: "50px" }}
           className="volume"
           max="100"
-          onSeek={onSeek}
+          onSeek={onVolumeSeek}
         />
       </div>
     </div>

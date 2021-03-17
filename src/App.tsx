@@ -42,7 +42,8 @@ function App() {
   }, [audioRef.current, state.loop]);
   React.useEffect(() => {
     audioRef.current.muted = state.mute;
-  }, [audioRef.current, state.mute]);
+    audioRef.current.volume = state.volume;
+  }, [audioRef.current, state.mute, state.volume]);
   // NOTE TEMP ONLY FOR DEBUG FOR NOW, state dependent
   React.useEffect(() => {
     console.log("STATE", state);
