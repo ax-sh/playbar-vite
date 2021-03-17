@@ -1,0 +1,51 @@
+.play__bar {
+  padding: 2rem 1.5rem;
+  border-radius: 0.5rem;
+  display: flex;
+  background-color: rgb(18, 18, 18);
+  color: rgb(196, 196, 196);
+  & .info {
+    flex: 1;
+    & h3,
+    & h6 {
+      margin: 0;
+      padding: 0;
+      text-align: left;
+    }
+    h3 {
+      font-size: 1rem;
+    }
+  }
+  & .controller__container {
+    /* background: red; */
+    flex: 10;
+    .controller__buttons {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      width: 30%;
+      margin: 0 auto;
+      svg {
+        fill: #fff;
+        width: 34px;
+        height: 34px;
+        stroke-width: 0;
+        &:hover {
+          fill: #1db954;
+          cursor: pointer;
+        }
+      }
+    }
+    .seekbar__wrapper {
+      display: flex;
+      justify-items: center;
+      align-items: center;
+      & > * {
+        flex: 1;
+      }
+      .seekbar {
+        flex: 10;
+      }
+    }
+  }
+}
