@@ -40,9 +40,9 @@
         width: 34px;
         height: 34px;
         stroke-width: 0;
+        cursor: pointer;
         &:hover path {
           fill: #1db954;
-          cursor: pointer;
         }
       }
     }
