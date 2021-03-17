@@ -42,6 +42,7 @@ const Div = styled.div`
           fill: #fff;
           width: 34px;
           height: 34px;
+          stroke-width: 0;
           &:hover {
             fill: #1db954;
             cursor: pointer;
