@@ -9,6 +9,8 @@ export enum Actions {
   TOGGLE_PLAYING,
   TOGGLE_LOOP,
   TOGGLE_MUTE,
+  SET_DURATION,
+  SET_CURRENT_TIME,
 }
 
 const initialState = {
@@ -18,6 +20,8 @@ const initialState = {
   loop: false,
   mute: false,
   index: 0,
+  duration: 0,
+  currentTime: 0,
 };
 
 const Reducer = (state, action) => {
@@ -29,6 +33,16 @@ const Reducer = (state, action) => {
         ...state,
         playlist: action.payload,
         src,
+      };
+    case Actions.SET_CURRENT_TIME:
+      return {
+        ...state,
+        currentTime: action.payload,
+      };
+    case Actions.SET_DURATION:
+      return {
+        ...state,
+        duration: action.payload,
       };
     case Actions.SET_SRC:
       return {

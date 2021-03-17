@@ -2,7 +2,7 @@ import React, { useState, useRef } from "react";
 import "./App.scss";
 import PlayBar from "./PlayBar/PlayBar";
 import styled from "styled-components";
-import { PlayerContext } from "./PlayBar/Store";
+import { Actions, PlayerContext } from "./PlayBar/Store";
 
 let TRACKS = [
   "https://raw.githubusercontent.com/himalayasingh/music-player-1/master/music/2.mp3",
@@ -55,7 +55,19 @@ function App() {
     <div className="App">
       <Div>
         <PlayBar playlist={TRACKS} />
-        <audio ref={audioRef} controls />
+        <audio
+          ref={audioRef}
+          onLoadedMetadata={({ target }) =>
+            dispatch({ type: Actions.SET_DURATION, payload: target.duration })
+          }
+          onTimeUpdate={({ target }) =>
+            dispatch({
+              type: Actions.SET_CURRENT_TIME,
+              payload: target.currentTime,
+            })
+          }
+          controls
+        />
       </Div>
     </div>
   );

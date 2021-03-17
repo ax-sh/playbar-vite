@@ -44,7 +44,7 @@ const Input = ({ onSeek, max = 100, ...props }) => {
       {...props}
       type="range"
       onInput={onInput}
-      onChange={onInput}
+      // onChange={onInput}
     />
   );
 };

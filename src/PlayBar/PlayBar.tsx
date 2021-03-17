@@ -21,6 +21,7 @@ const PlayBar = ({ playlist }: { playlist: Array<Object> }) => {
   const [title, setTitle] = React.useState("0:00");
   const author = "author";
   const [currentTime, setCurrentTime] = React.useState("0:00");
+  const [duration, setDuration] = React.useState("0:00");
   const onSeek = (value: Number) => {
     const progress = calculateTime(value);
     setCurrentTime(progress);
@@ -32,6 +33,10 @@ const PlayBar = ({ playlist }: { playlist: Array<Object> }) => {
   React.useEffect(() => {
     dispatch({ type: Actions.SET_PLAYLIST, payload: playlist });
   }, [dispatch]);
+  React.useEffect(() => {
+    const time = calculateTime(state.duration);
+    setDuration(time);
+  }, [state.duration]);
   React.useEffect(() => {
     setTitle(state.src);
     console.log(state.src);
@@ -78,8 +83,13 @@ const PlayBar = ({ playlist }: { playlist: Array<Object> }) => {
         </div>
         <div className="seekbar__wrapper">
           <span>{currentTime}</span>
-          <Input className="seekbar" max="8" onSeek={onSeek} />
-          <span>{currentTime}</span>
+          <Input
+            className="seekbar"
+            max={state.duration}
+            value={state.currentTime}
+            onSeek={onSeek}
+          />
+          <span>{duration}</span>
         </div>
       </div>
       <div className="volume__container">
