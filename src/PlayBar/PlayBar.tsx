@@ -42,6 +42,7 @@ const PlayBar = ({ playlist }: { playlist: Array<Object> }) => {
         <div className="controller__buttons">
           <PrevIcon />
           <PlayIcon
+            style={!state.playing ? { fill: "red" } : {}}
             onClick={() =>
               dispatch({
                 type: Actions.TOGGLE_PLAYING,
