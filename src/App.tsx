@@ -123,6 +123,55 @@ const NextIcon = () => (
   </svg>
 );
 
+const InputStyle = styled.input`
+  /* #myinput { */
+  --color: #1db954;
+  background: linear-gradient(
+    to right,
+    var(--color) 0%,
+    var(--color) 50%,
+    #fff 50%,
+    #fff 100%
+  );
+  /* border: solid 1px #82cfd0; */
+  border-radius: 8px;
+  /* height: 7px; */
+  overflow: hidden;
+  /* width: 356px; */
+  outline: none;
+  transition: background 450ms ease-in;
+  -webkit-appearance: none;
+  /* } */
+  height: 8px;
+  cursor: pointer;
+  &::-webkit-slider-thumb {
+    width: 10px;
+    -webkit-appearance: none;
+    background: var(--color);
+    border-radius: 50%;
+    transform: translateX(-50%);
+  }
+`;
+
+const Input = ({ ...props }) => {
+  const onInput = function ({ target }) {
+    let value = ((target.value - target.min) / (target.max - target.min)) * 100;
+    console.log(value);
+    const color = "var(--color)";
+    target.style.background = `linear-gradient(to right, ${color} 0%, ${color}  ${value}%, #fff  ${value}%, white 100%)`;
+  };
+  return (
+    <InputStyle
+      min="0"
+      max="100"
+      step="0.01"
+      {...props}
+      type="range"
+      onInput={onInput}
+    />
+  );
+};
+
 function App() {
   const title = "title";
   return (
@@ -140,7 +189,7 @@ function App() {
               <NextIcon />
             </div>
             <div className="seekbar">
-              <input type="range" />
+              <Input />
             </div>
           </div>
         </div>
