@@ -4,6 +4,8 @@ export enum Actions {
   SET_PLAYLIST,
   SET_SRC,
   SET_VOLUME,
+  SET_NEXT,
+  SET_PREV,
   TOGGLE_PLAYING,
   TOGGLE_LOOP,
   TOGGLE_MUTE,
@@ -15,6 +17,7 @@ const initialState = {
   src: "",
   loop: false,
   mute: false,
+  index: 0,
 };
 
 const Reducer = (state, action) => {
@@ -32,6 +35,28 @@ const Reducer = (state, action) => {
         ...state,
         src: action.payload,
       };
+    case Actions.SET_NEXT:
+      if (!state.playlist?.length) return state;
+      state.index++;
+      const n = state.index % state.playlist.length | 0;
+      return {
+        ...state,
+        src: state.playlist[n].src,
+        playing: true,
+        // current: { ...state.playlist[n], playing: true },
+      };
+
+    case Actions.SET_PREV:
+      if (!state.playlist?.length) return state;
+      state.index--;
+      const p = state.index % state.playlist.length | 0;
+      return {
+        ...state,
+        src: state.playlist[p < 0 ? p * -1 : p].src,
+        playing: true,
+        //     current: { ...state.playlist[p < 0 ? p * -1 : p], playing: true },
+      };
+      return state;
     case Actions.TOGGLE_PLAYING:
       return {
         ...state,

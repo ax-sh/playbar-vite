@@ -45,7 +45,13 @@ const PlayBar = ({ playlist }: { playlist: Array<Object> }) => {
       </div>
       <div className="controller__container">
         <div className="controller__buttons">
-          <PrevIcon />
+          <PrevIcon
+            onClick={() =>
+              dispatch({
+                type: Actions.SET_PREV,
+              })
+            }
+          />
           <PlayIcon
             style={!state.playing ? { fill: "red" } : {}}
             onClick={() =>
@@ -54,7 +60,13 @@ const PlayBar = ({ playlist }: { playlist: Array<Object> }) => {
               })
             }
           />
-          <NextIcon />
+          <NextIcon
+            onClick={() =>
+              dispatch({
+                type: Actions.SET_NEXT,
+              })
+            }
+          />
           <LoopIcon
             className={`stroke ${state.loop ? "active" : " "}`}
             onClick={() =>
